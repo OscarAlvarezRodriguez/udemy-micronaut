@@ -10,9 +10,9 @@ import jakarta.inject.Singleton;
 @Controller("/hello")
 public class HelloWorldController {
 
-    private final HelloWorldService Service;
+    private final MyService Service;
 
-    public HelloWorldController(final HelloWorldService service) {
+    public HelloWorldController(final MyService service) {
         this.Service = service;
     }
 
