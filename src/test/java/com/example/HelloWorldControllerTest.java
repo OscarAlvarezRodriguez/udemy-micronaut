@@ -22,6 +22,6 @@ class HelloWorldControllerTest {
     void testHelloWorldController() {
         var response = httpClient.toBlocking().exchange("/hello", String.class);
         assertEquals(HttpStatus.OK, response.getStatus());
-        assertEquals("hello world!", response.getBody().orElse(null));
+        assertEquals("hello world from service!", response.getBody().orElse(null));
     }
 }
