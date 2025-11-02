@@ -13,11 +13,11 @@ public class Application {
     public static void main(String[] args) {
         var context = Micronaut.run(Application.class, args);
 
-        LOG.info("Message from service: {}",
+        LOG.debug("Message from service: {}",
             context.getBean(HelloWorldService.class).HelloFromService()
         );
 
-        LOG.info("Message from service: {}",
+        LOG.debug("Message from service: {}",
                 context.getBean(HelloWorldMicronautService.class).HelloFromService()
         );
     }
