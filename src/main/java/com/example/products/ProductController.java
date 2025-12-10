@@ -1,13 +1,12 @@
 package com.example.products;
 
 import com.example.data.InMemoryStore;
-import io.micronaut.http.annotation.Controller;
-import io.micronaut.http.annotation.Get;
-import io.micronaut.http.annotation.Post;
+import io.micronaut.http.annotation.*;
 import jakarta.inject.Inject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller("/products")
 public class ProductController {
@@ -18,13 +17,26 @@ public class ProductController {
         this.store = inMemoryStore;
     }
 
-    @Post
-    public Product saveProducts(){
-        return null;
-    }
-
     @Get
     public List<Product> getAllProducts() {
         return new ArrayList<>(store.getProducts().values());
+    }
+
+    @Get("/{id}")
+    public Product getProductById(@PathVariable Integer id){
+        return store.getProducts().get(id);
+    }
+
+    @Get("filter{?max,offset}")
+    public List<Product> getProductsByFilter(
+            @QueryValue Optional<Integer> max,
+            @QueryValue Optional<Integer> offset
+    ){
+        return this.store.getProducts().
+                values().
+                stream().
+                skip(offset.orElse(0)).
+                limit(max.orElse(5)).
+                toList();
     }
 }

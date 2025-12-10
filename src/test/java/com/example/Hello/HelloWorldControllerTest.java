@@ -1,4 +1,4 @@
-package com.example;
+package com.example.Hello;
 
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.client.HttpClient;

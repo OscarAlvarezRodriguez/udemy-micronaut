@@ -8,9 +8,15 @@ import java.util.Map;
 @Singleton
 public class InMemoryStore {
 
-    private final Map<String, Product> products = new HashMap<>();
+    private final Map<Integer, Product> products = new HashMap<>();
 
-    public Map<String, Product> getProducts() {
+    public Map<Integer, Product> getProducts() {
         return products;
     }
+
+    public Product addProduct(Product product) {
+        products.put(product.id(), product);
+        return product;
+    }
+
 }
