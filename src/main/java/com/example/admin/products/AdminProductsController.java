@@ -43,4 +43,15 @@ public class AdminProductsController {
 
         return this.store.addProduct(existingProduct);
     }
+
+    @Delete("/{id}")
+    @Status(HttpStatus.NO_CONTENT)
+    public void DeleteProduct(@PathVariable Integer id){
+        if (!this.store.getProducts().containsKey(id)){
+            throw new HttpStatusException(
+                    HttpStatus.NOT_FOUND, "Product with ID " + id + " not found."
+            );
+        }
+        this.store.getProducts().remove(id);
+    }
 }
