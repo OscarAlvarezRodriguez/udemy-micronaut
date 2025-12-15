@@ -2,6 +2,8 @@ package com.example.products;
 
 import com.example.data.InMemoryStore;
 import io.micronaut.http.annotation.*;
+import io.micronaut.security.annotation.Secured;
+import io.micronaut.security.rules.SecurityRule;
 import jakarta.inject.Inject;
 
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller("/products")
+@Secured(SecurityRule.IS_AUTHENTICATED)
 public class ProductController {
 
     private final InMemoryStore store;

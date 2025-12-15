@@ -5,7 +5,10 @@ import com.example.products.Product;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.exceptions.HttpStatusException;
+import io.micronaut.security.annotation.Secured;
+import io.micronaut.security.rules.SecurityRule;
 
+@Secured(SecurityRule.IS_AUTHENTICATED)
 @Controller("/admin/products")
 public class AdminProductsController {
 

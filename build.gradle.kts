@@ -14,10 +14,14 @@ repositories {
 dependencies {
     annotationProcessor("io.micronaut:micronaut-http-validation")
     annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
+    annotationProcessor("io.micronaut.security:micronaut-security-annotations")
     implementation("io.micronaut.serde:micronaut-serde-jackson")
+    implementation("io.micronaut.security:micronaut-security-jwt")
     compileOnly("io.micronaut:micronaut-http-client")
     runtimeOnly("ch.qos.logback:logback-classic")
     testImplementation("io.micronaut:micronaut-http-client")
+    aotPlugins(platform("io.micronaut.platform:micronaut-platform:4.10.3"))
+    aotPlugins("io.micronaut.security:micronaut-security-aot")
 }
 
 
@@ -50,6 +54,7 @@ micronaut {
         deduceEnvironment = true
         optimizeNetty = true
         replaceLogbackXml = true
+        configurationProperties.put("micronaut.security.jwks.enabled","false")
     }
 }
 
